@@ -12,19 +12,21 @@ object SparkWordCount {
     val sc = new SparkContext(conf)
     println("start...")
 
-    for(i <- 1 to 100) {
-      println(i)
-    }
-
     // TODO: 执行业务操作
     // 1:hello world 2:hello spark
     val rdd_line: RDD[String] = sc.textFile("datas/word-data")
 
     // 1.hello 2:world
     val rdd_words: RDD[String] = rdd_line.flatMap(_.split(" "))
+    //for (item <- rdd_words.collect()){
+    //  println(item)
+    //}
 
     // 1.(hello,hello,hello) 2.(world) 3.(spark)
     val rdd_tuple: RDD[(String, Int)] = rdd_words.map((_, 1))
+    //for (item <- rdd_tuple.collect()){
+    //  println(item._1 + " " + item._2)
+    //}
 
     // hello:3 world:1
     val rdd_group: RDD[(String, Int)] = rdd_tuple.reduceByKey(_ + _)
@@ -33,7 +35,10 @@ object SparkWordCount {
     val rdd_sort: RDD[(String, Int)] = rdd_group.sortBy(_._2, false)
 
     // 打印结果
-    println(rdd_sort.collect().toString);
+    for (item <- rdd_sort.collect()){
+      //println(item)
+      println(item._1 + ":" + item._2)
+    }
 
     // TODO: 关闭
     sc.stop()
