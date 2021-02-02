@@ -8,7 +8,7 @@ object ScalaSuperMap02 {
    */
   def main(args: Array[String]): Unit = {
 
-    // TODO: 1.高阶函数
+    // TODO: 1.map方法：遍历集合内所有元素
     // 计算： 1.遍历list 2.一次执行sum 3.计算结果放入新的list集合
     val list_1 = List(1, 2, 3, 4, 5)
     val list_2 = list_1.map(sum)

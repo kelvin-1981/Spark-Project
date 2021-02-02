@@ -8,12 +8,16 @@ object ScalaFlatMap {
    */
   def main(args: Array[String]): Unit = {
 
-    // TODO: flatmap
-    // TODO: 输出结果：List(K, E, L, V, I, N, T, O, N, Y, S, U, M)
     val list_1 = List("kelvin", "tony", "sum")
+
+    // TODO: flatmap：扁平化所有元素
+    // TODO: 输出结果：List(K, E, L, V, I, N, T, O, N, Y, S, U, M)
     val list_2 = list_1.flatMap(upper)
-    //val list_2 = list_1.flatMap(_.toUpperCase)
     println(list_2)
+
+    // TODO:
+    val list_3 = list_1.flatMap(_.toUpperCase)
+    println(list_3)
   }
 
   /**

@@ -10,7 +10,7 @@ object ScalaReduce {
 
     val list_1 = List(1, 2, 3, 4, 5)
 
-    // TODO: reduce 集合中的元素一次计算 ((((1+2) + 3) + 4) + 5)
+    // TODO: reduce：一次计算所有元素：集合中的元素一次计算 ((((1+2) + 3) + 4) + 5)
     val res_1 = list_1.reduce(sum)
     println(res_1)
 
