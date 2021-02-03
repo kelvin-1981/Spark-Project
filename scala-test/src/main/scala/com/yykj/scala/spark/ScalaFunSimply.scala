@@ -8,6 +8,7 @@ object ScalaFunSimply {
    */
   def main(args: Array[String]): Unit = {
 
+    // TODO: 1.采用标准方式进行简化示例
     fun_simple_standrad()
 
     // TODO: 2.采用数组reduce进行简化示例
