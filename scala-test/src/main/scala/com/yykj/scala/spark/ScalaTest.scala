@@ -55,7 +55,4 @@ object ScalaTest {
   def sum(num : Int) : Int = {
     num * 2
   }
-
-
-
 }

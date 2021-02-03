@@ -2,7 +2,7 @@ package com.yykj.scala.spark
 
 object ScalaSuperMap {
   /**
-   * Scala函数话变成 Map映射
+   * Scala函数话变成 Map映射 遍历集合元素
    * @param args
    */
   def main(args: Array[String]): Unit = {

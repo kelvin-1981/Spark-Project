@@ -5,6 +5,10 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkWordCount {
 
+  /**
+   *
+   * @param args
+   */
   def main(args: Array[String]): Unit = {
 
     // TODO: 声明对象
@@ -30,6 +34,7 @@ object SparkWordCount {
 
     // hello:3 world:1
     val rdd_group: RDD[(String, Int)] = rdd_tuple.reduceByKey(_ + _)
+    //val rdd_group: RDD[(String, Int)] = rdd_tuple.reduceByKey(sum _)
 
     // 排序结果
     val rdd_sort: RDD[(String, Int)] = rdd_group.sortBy(_._2, false)
@@ -42,5 +47,15 @@ object SparkWordCount {
 
     // TODO: 关闭
     sc.stop()
+  }
+
+  /**
+   * 自定义相加方法
+   * @param v1
+   * @param v2
+   * @return
+   */
+  def sum(v1 : Int, v2 : Int) : Int = {
+    v1 + v2
   }
 }

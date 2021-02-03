@@ -1,6 +1,6 @@
 package com.yykj.scala.spark
 
-object ScalaSuperMap02 {
+object ScalaMap {
 
   /**
    * list内元素*2
