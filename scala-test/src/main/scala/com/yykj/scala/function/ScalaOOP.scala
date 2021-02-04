@@ -12,7 +12,7 @@ object ScalaOOP {
     cat.name = "小白"
     cat.age = 10
     cat.color = "White"
-    print("Success：" + cat.name + " " + cat.age + " " + cat.color)
+    print("Success：" + cat.name + " " + cat.age + " " + cat.color + " " + cat.compute())
   }
 }
 
@@ -24,4 +24,8 @@ class Cat(){
   var name:String = ""
   var age:Int = _ //_:Int默认值为0
   var color:String = _ //_:string 默认值为“”
+  var fun : (Int) => Int = {_ * 2}
+  def compute() : Any = {
+    fun(100)
+  }
 }

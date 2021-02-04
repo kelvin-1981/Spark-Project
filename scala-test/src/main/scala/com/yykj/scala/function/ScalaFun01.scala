@@ -24,6 +24,7 @@ object ScalaFunction {
     val f2 = (x : Int, y : Int) => {
       x + y
     }
+
     println("f2 : " + f2)
     println("f2 result : " + f2(50,60))
   }
