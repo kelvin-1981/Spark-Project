@@ -41,5 +41,9 @@ object SparkTest {
 
     // TODO: 8.关闭
     sc.stop()
+
+    var i = 5 / 2;
+    var k = 1 % 2;
+    println(k)
   }
 }
