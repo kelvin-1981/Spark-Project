@@ -17,7 +17,7 @@ object SparkMockDriver {
     // TODO: 2.创建作业信息,自定义数据及处理逻辑
     val task = new SparkMockTask()
     task.datas = List(1,2,3,4,5)
-    task.logic = _ * 3
+    task.logic = {_ * 3}
     // TODO: 3.发送数据
     val os = client.getOutputStream
     val obj_os = new ObjectOutputStream(os)

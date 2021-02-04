@@ -31,8 +31,7 @@ object SparkMockExecutor {
 
     // TODO: 4.执行业务逻辑，输出结果
     println("Executor(服务器)开始执行Task...")
-    val comp_res = task.compute()
-    println("Executor(服务器)开始Task计算完毕...")
-    println("Executor(服务器)计算结果：" + comp_res)
+    val res_list = task.compute()
+    println("Executor(服务器)计算结果：" + res_list)
   }
 }

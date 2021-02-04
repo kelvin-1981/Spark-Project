@@ -17,7 +17,7 @@ class SparkMockTask extends Serializable {
   /**
    * 计算
    */
-  def compute() : List[Int] = {
+  def compute() = {
     datas.map(logic)
   }
 }
