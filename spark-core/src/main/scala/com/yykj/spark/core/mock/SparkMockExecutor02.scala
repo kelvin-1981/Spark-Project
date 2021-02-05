@@ -4,7 +4,7 @@ import java.io.ObjectInputStream
 import java.net.{ServerSocket, Socket}
 
 /**
- *
+ * Executor负责Spark计算 多个并行计算
  */
 object SparkMockExecutor02 {
 
