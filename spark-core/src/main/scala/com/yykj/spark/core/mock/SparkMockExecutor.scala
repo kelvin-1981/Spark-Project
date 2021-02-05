@@ -22,16 +22,16 @@ object SparkMockExecutor {
     // TODO: 3.接受作业信息，执行业务操作
     val is = client.getInputStream
     val obj_is = new ObjectInputStream(is)
-    val sub_task = obj_is.readObject().asInstanceOf[SparkMockSubTask]
+    val task = obj_is.readObject().asInstanceOf[SparkMockTask]
     is.close()
     obj_is.close()
     client.close()
     server.close()
-    println("Executor-1(服务器)接收数据:" + sub_task.datas)
+    println("Executor-1(服务器)接收数据:" + task.datas)
 
     // TODO: 4.执行业务逻辑，输出结果
     println("Executor-1开始执行Task...")
-    val res_list = sub_task.compute()
+    val res_list = task.compute()
     println("Executor-1计算结果：" + res_list)
   }
 }
