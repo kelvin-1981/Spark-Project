@@ -1,4 +1,4 @@
-package com.yykj.spark.core.main
+package com.yykj.spark.core.wordcount
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -18,7 +18,7 @@ object SparkWordCount {
 
     // TODO: 执行业务操作
     // 1:hello world 2:hello spark
-    val rdd_line: RDD[String] = sc.textFile("datas/word-data")
+    val rdd_line: RDD[String] = sc.textFile("spark-core/datas/input/word-data")
 
     // 1.hello 2:world
     val rdd_words: RDD[String] = rdd_line.flatMap(_.split(" "))

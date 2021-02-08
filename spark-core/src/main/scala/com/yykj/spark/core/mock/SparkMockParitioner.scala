@@ -10,12 +10,12 @@ class SparkMockParitioner {
   /**
    * 分区数量
    */
-  private val partition_num : Int = 2
+  private val parallelize : Int = 2
 
   /**
    * 全部数据
    */
-   var datas_all : List[Int] = _
+   var datas_all : Seq[Int] = _
 
   /**
    * 创建分区列表
@@ -25,12 +25,12 @@ class SparkMockParitioner {
     if (datas_all == null) null
 
     // TODO: 生成task列表
-    var split_num = datas_all.length / partition_num
+    var split_num = datas_all.length / parallelize
     var partitiones: mutable.Queue[SparkMockPartition] = new mutable.Queue[SparkMockPartition]()
 
     var data_start = 0
     var data_end = 0
-    for (num <- 0 to partition_num - 1) {
+    for (num <- 0 to parallelize - 1) {
       // TODO: 模拟分区
       data_start = data_start + (split_num * num)
       if(data_start < 0){
@@ -51,7 +51,7 @@ class SparkMockParitioner {
 
       // TODO:生成Executor
       val partition = new SparkMockPartition
-      partition.parition_order = num
+      partition.parition_index = num
       partition.parition_data = task_datas.toArray
       partitiones += partition
     }

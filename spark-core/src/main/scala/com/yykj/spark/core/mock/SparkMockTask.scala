@@ -5,7 +5,7 @@ class SparkMockTask extends Serializable {
   /**
    * 数据 : _代表空值
    */
-  var datas : List[Int] = _
+  var datas : Seq[Int] = _
 
   /**
    * 处理逻辑
@@ -19,7 +19,7 @@ class SparkMockTask extends Serializable {
   /**
    * 计算
    */
-  def compute() : List[Int] = {
+  def compute() : Seq[Int] = {
     datas.map(logic)
   }
 }

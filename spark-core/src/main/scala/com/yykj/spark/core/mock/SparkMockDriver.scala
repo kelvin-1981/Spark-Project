@@ -15,27 +15,21 @@ object SparkMockDriver {
    */
   def main(args: Array[String]): Unit = {
 
-    // TODO: 1.待计算数据
-    var datas = this.textFile("mock-path")
+    // TODO: 1.准备环境
+    val sc = new SparkMockContext
 
-    // TODO: 2.创建作业信息,自定义数据及处理逻辑
-    // Spark RDD 计算逻辑不可改变，不可外部传递计算逻辑
-    val math_rdd = new SparkMockMathRDD(datas,_ * 100)
+    // TODO: 1.待计算数据
+    //var f: (Int) => Int = (x: Int) => {x * 2}
+    var f: (Int) => Int = {_ * 2}
+    val rdd_values: SparkMockRDD[Int] = sc.parallelize[Int](List(1, 2, 3, 4, 5),2,f)
 
     // TODO: 3.分布式计算
-    this.collect(math_rdd)
+    //this.collect(rdd_values)
 
     // TODO: 4.通知
     print("Driver(客户端)数据发送完毕...")
   }
 
-  /**
-   * 读取数据
-   * @param path
-   */
-  def textFile(path : String) : List[Int] = {
-    List(1,2,3,4,5)
-  }
 
   /**
    * 执行分布式计算
@@ -71,22 +65,11 @@ object SparkMockDriver {
    * 计算
    * @return
    */
-  def collect(math_rdd : SparkMockMathRDD): Unit ={
+  def collect(math_rdd : SparkMockParallelRDD[Int]): Unit ={
 
-    // TODO: 1.获取分区
-    val partitions = math_rdd.getPartitions()
-    println("Driver(客户端)完成RDD分区..." + partitions.length)
-
-    // TODO: 2.根据分区信息生成task集合
-    var task_list = new Array[SparkMockTask](partitions.length)
-    for(i <- 0 to partitions.length - 1){
-      var task = new SparkMockTask
-      task.datas = partitions(i).parition_data.toList
-      task.logic = math_rdd.logic
-      task_list(i) = task
-    }
-
-    // TODO: 3.执行计算
-    runJob(task_list)
+    // TODO: 1.生成task列表
+    //val taskes = math_rdd.getTaskes
+    // TODO: 2.执行计算
+    //runJob(taskes)
   }
 }

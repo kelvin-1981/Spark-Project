@@ -1,4 +1,4 @@
-package com.yykj.spark.core.main
+package com.yykj.spark.core.wordcount
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -16,7 +16,7 @@ object SparkTest {
     val sc = new SparkContext(conf)
 
     // TODO: 2.读取文件
-    val lines: RDD[String] = sc.textFile("spark-core/datas/word-data")
+    val lines: RDD[String] = sc.textFile("spark-core/datas/input/word-data")
 
     // TODO: 3.扁平化
     val words: RDD[String] = lines.flatMap(_.split(" "))
