@@ -6,7 +6,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDMapPartitions {
 
   /**
-   * mapPartitions标准操作[Value集合类型]
+   * mapPartitions[Transform & Value单值类型]
+   * 将待处理的数据以分区为单位发送到计算节点进行处理，这里的处理是指可以进行任意的处理，哪怕是过滤数据
+   * def mapPartitions[U: ClassTag](f: Iterator[T] => Iterator[U],preservesPartitioning: Boolean = false): RDD[U]
    * @param args
    */
   def main(args: Array[String]): Unit = {
@@ -16,10 +18,10 @@ object SparkRDDMapPartitions {
     val sc = new SparkContext(conf)
 
     // TODO: 2.执行操作
-    // TODO: 2.1 mapPartitions标准操作[Value集合类型] 简化写法
+    // TODO: 2.1 mapPartitions标准操作 简化写法
     transformMapPartitions(sc)
 
-    // TODO: 2.2 mapPartitions标准操作[Value集合类型]
+    // TODO: 2.2 mapPartitions标准操作
     //transformMapPartitions02(sc)
 
     // TODO: 2.3 mapPartitions获取分区最大值

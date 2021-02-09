@@ -6,7 +6,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDMapPartitionsWithIndex {
 
   /**
-   *
+   * mapPartitionsWithIndex[Transform & Value单值类型]
+   * 将待处理的数据以分区为单位发送到计算节点进行处理，这里的处理是指可以进行任意的处理，哪怕是过滤数据，在处理时同时可以获取当前分区索引。
+   * def mapPartitionsWithIndex[U: ClassTag](f: (Int, Iterator[T]) => Iterator[U],preservesPartitioning: Boolean = false): RDD[U]
    * @param args
    */
   def main(args: Array[String]): Unit = {
@@ -16,7 +18,7 @@ object SparkRDDMapPartitionsWithIndex {
     val sc = new SparkContext(conf)
 
     // TODO: 2.执行操作
-    // TODO: 2.1 mapPartitionsWithIndex[Value集合类型]：根据需要读取的分区索引，读取单个分区的全部数据后进行逻辑处理
+    // TODO: 2.1 mapPartitionsWithIndex：根据需要读取的分区索引，读取单个分区的全部数据后进行逻辑处理
     //transformMapPartitionsWithIndex(sc)
 
     // TODO: 2.2 mapPartitionsWithIndex:显示数据所属分区
