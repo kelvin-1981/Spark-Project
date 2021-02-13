@@ -17,7 +17,7 @@ object SparkRDDSubtract {
     val sc = new SparkContext(conf)
 
     // TODO: 2.逻辑计算
-    // TODO: 2.1 union:并集:对源RDD和参数RDD求并集后返回一个新的RDD
+    // TODO: 2.1 Subtract:差集:以一个RDD元素为主，去除两个RDD中重复元素，将其他元素保留下来。
     transformSubtract(sc)
 
     // TODO: 3.关闭环境
