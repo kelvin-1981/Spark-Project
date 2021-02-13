@@ -1,6 +1,5 @@
 package com.yykj.spark.core.rdd.transform
 
-import com.yykj.spark.core.rdd.transform.SparkRDDFlatMap.transformFlatMapType
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -20,10 +19,10 @@ object SparkRDDGlom {
 
     // TODO: 2.执行操作
     // TODO: 2.1 glom标准操作：将同一个分区的数据直接转换为相同类型的内存数组进行处理，分区不变
-    //transformGlom(sc)
+    transformGlom(sc)
 
     // TODO: 2.2 glom: 每个分区最大值求和计算
-    transformGlomPartitionMaxSum(sc)
+    //transformGlomPartitionMaxSum(sc)
 
     // TODO: 3.关闭环境
     sc.stop()
