@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDZip {
 
   /**
-   * zip:标准操作[Transform & 双Value单值类型] 双Value类型指两个数据源的操作
+   * zip:标准操作[Transform & 双Value类型] 双Value类型指两个数据源的操作
    * 将两个RDD中的元素，以键值对的形式进行合并。其中，键值对中的Key为第1个RDD中的元素，Value为第2个RDD中的相同位置的元素。
    * def zip[U: ClassTag](other: RDD[U]): RDD[(T, U)]
    * @param args
