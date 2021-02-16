@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDCountByKey {
 
   /**
-   * countByKey:标准操作[Action] Action算子：出发作业（Job）执行的算子
+   * countByKey:标准操作[Action & shuffle算子] Action算子：出发作业（Job）执行的算子
    * 统计每种key的个数
    * def countByKey(): Map[K, Long]
    * @param args

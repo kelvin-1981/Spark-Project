@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDReduceByKey {
 
   /**
-   * reduceByKey:标准操作[Transform & Key-Value类型] Key-Value类型：数据源必须是key-value类型
+   * reduceByKey:标准操作[Transform & Key-Value类型 & shuffle算子] Key-Value类型：数据源必须是key-value类型
    * 可以将数据按照相同的Key对Value进行聚合
    * def reduceByKey(func: (V, V) => V): RDD[(K, V)]
    * def reduceByKey(func: (V, V) => V, numPartitions: Int): RDD[(K, V)]

@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDAggregateByKey {
 
   /**
-   * AggregateByKey:标准操作[Transform &  Key-Value类型]
+   * AggregateByKey:标准操作[Transform &  Key-Value类型 & shuffle算子]
    * 将数据根据不同的规则进行分区内计算和分区间计算
    * 相同key的第一个数据和初始值进行分区内计算，分区内和分区间计算规则可以不相同
    * 当分区内计算规则和分区间计算规则相同时，aggregateByKey就可以简化为foldByKey

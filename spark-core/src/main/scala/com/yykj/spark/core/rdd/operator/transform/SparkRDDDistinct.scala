@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDDistinct {
 
   /**
-   * distinct:标准操作[Transform & Value单值类型]
+   * distinct:标准操作[Transform & Value单值类型 & shuffle算子]
    * 将数据集中重复的数据去重
    * def distinct()(implicit ord: Ordering[T] = null): RDD[T]
    * def distinct(numPartitions: Int)(implicit ord: Ordering[T] = null): RDD[T]

@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDRepartition {
 
   /**
-   * Repartition:标准操作[Transform & Value单值类型]
+   * Repartition:标准操作[Transform & Value单值类型 & shuffle算子]
    * 该操作内部其实执行的是coalesce操作，参数shuffle的默认值为true。无论是将分区数多的RDD转换为分区数少的RDD，
    * 还是将分区数少的RDD转换为分区数多的RDD，repartition操作都可以完成，因为无论如何都会经shuffle过程。
    * def repartition(numPartitions: Int)(implicit ord: Ordering[T] = null): RDD[T]

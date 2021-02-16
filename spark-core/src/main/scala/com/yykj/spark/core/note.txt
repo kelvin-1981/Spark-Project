@@ -1,0 +1,18 @@
+一、RDD依赖关系
+1. RDD 血缘关系
+   RDD只支持粗粒度转换，即在大量记录上执行的单个操作。将创建RDD的一系列Lineage（血统）记录下来，以便恢复丢失的分区。
+    RDD的Lineage会记录RDD的元数据信息和转换行为，当该RDD的部分分区数据丢失时，它可以根据这些信息来重新运算和恢复丢失的数据分区。
+2. RDD 依赖关系
+   这里所谓的依赖关系，其实就是两个相邻RDD之间的关系
+3. RDD 窄依赖
+   窄依赖表示每一个父(上游)RDD的Partition最多被子（下游）RDD的一个Partition使用，窄依赖我们形象的比喻为独生子女。
+   class OneToOneDependency[T](rdd: RDD[T]) extends NarrowDependency [T](rdd)
+4. RDD 宽依赖
+   宽依赖表示同一个父（上游）RDD的Partition被多个子（下游）RDD的Partition依赖，会引起Shuffle，总结：宽依赖我们形象的比喻为多生。
+5. RDD 阶段划分
+   DAG（Directed Acyclic Graph）有向无环图是由点和线组成的拓扑图形，该图形具有方向，不会闭环。例如，DAG记录了RDD的转换过程和任务的阶段。
+6. RDD 任务划分 RDD任务切分中间分为：Application、Job、Stage和Task Application->Job->Stage->Task每一层都是1对n的关系。
+   1) Application：初始化一个SparkContext即生成一个Application；
+   2) Job：一个Action算子就会生成一个Job；
+   3) Stage：Stage等于宽依赖(ShuffleDependency)的个数加1；
+   4) Task：一个Stage阶段中，最后一个RDD的分区个数就是Task的个数。

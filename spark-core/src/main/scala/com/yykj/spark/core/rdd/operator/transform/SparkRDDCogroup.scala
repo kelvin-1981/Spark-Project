@@ -5,7 +5,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkRDDCogroup {
   /**
-   * cogroup:标准操作[Transform &  Key-Value类型]
+   * cogroup:标准操作[Transform &  Key-Value类型 & shuffle算子]
    * 在类型为(K,V)和(K,W)的RDD上调用，返回一个(K,(Iterable<V>,Iterable<W>))类型的RDD
    * connect + group : 根据相同的key先分组后进行连接
    * def cogroup[W](other: RDD[(K, W)]): RDD[(K, (Iterable[V], Iterable[W]))]
