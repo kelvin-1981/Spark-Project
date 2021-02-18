@@ -6,7 +6,7 @@ import org.apache.spark.rdd.RDD
 object SparkRDDSerial {
 
   /**
-   *
+   * RDD序列化
    * @param args
    */
   def main(args: Array[String]): Unit = {

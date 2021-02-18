@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkRDDGroupByKey {
 
   /**
-   * groupByKey:标准操作[Transform & Key-Value类型]
+   * groupByKey:标准操作[Transform & Key-Value类型 & shuffle算子]
    * 将数据源的数据根据key对value进行分组
    *
    * ***：Spark Shuffle必须进行落盘处理，不能在内存中等待，会导致内存溢出。Shuffle性能低
