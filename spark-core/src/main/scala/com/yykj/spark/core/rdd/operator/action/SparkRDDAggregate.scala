@@ -18,9 +18,9 @@ object SparkRDDAggregate {
 
     // TODO: 2.逻辑计算
     // TODO: 2.1 aggregate:分区的数据通过初始值和分区内的数据进行聚合，然后再和初始值进行分区间的数据聚合
-    //actionAggregate(sc)
+    actionAggregate(sc)
     // TODO: 2.2 aggregate:aggregate与aggregateByKey初始值区别
-    actionAggregate02(sc)
+    //actionAggregate02(sc)
 
     // TODO: 3.关闭环境
     sc.stop()

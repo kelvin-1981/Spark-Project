@@ -37,11 +37,12 @@ object SparkRDDCombineByKey {
     // 参数2： 分区内计算规则
     // 参数3： 分区间计算规则
     val combinRDD: RDD[(String, (Int, Int))] = dataRDD.combineByKey(
+      // v:具体数值 (v, 1):(具体数值=v,count=1)
       v => (v, 1),
       (t: (Int, Int), v) => (t._1 + v, t._2 + 1),
       (t1: (Int, Int), t2: (Int, Int)) => (t1._1 + t2._1, t1._2 + t2._2)
     )
-    val combineRDD: RDD[(String, Int)] = combinRDD.mapValues(tup => tup._1 / tup._2)
-    combineRDD.collect().foreach(println)
+    val mapVRDD: RDD[(String, Int)] = combinRDD.mapValues(tup => tup._1 / tup._2)
+    mapVRDD.collect().foreach(println)
   }
 }

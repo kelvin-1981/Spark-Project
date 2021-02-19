@@ -35,8 +35,11 @@ object SparkRDDGlom {
    */
   def transformGlom(sc: SparkContext): Unit = {
     val dataRDD: RDD[Int] = sc.makeRDD(List(1, 2, 3, 4), 2)
-    val glomRDD: RDD[Array[Int]] = dataRDD.glom()
     // TODO: 返回元素为数值格式 需要进行数组显示
+    val glomRDD: RDD[Array[Int]] = dataRDD.glom()
+    // TODO: 输出结果
+    // 1,2
+    // 3,4
     glomRDD.collect().foreach(data => {
       println(data.mkString(","))
     })

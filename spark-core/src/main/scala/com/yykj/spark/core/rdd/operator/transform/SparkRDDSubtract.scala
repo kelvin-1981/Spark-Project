@@ -25,7 +25,7 @@ object SparkRDDSubtract {
   }
 
   /**
-   * intersection:交集：对源RDD和参数RDD求交集后返回一个新的RDD
+   * Subtract差集:以一个RDD元素为主，去除两个RDD中重复元素，将其他元素保留下来。
    * @param sc
    */
   def transformSubtract(sc: SparkContext): Unit = {
@@ -33,11 +33,11 @@ object SparkRDDSubtract {
     val dataRDD_2: RDD[Int] = sc.makeRDD(List(5, 6, 7, 8, 9, 10))
 
     // TODO: 1.需要以一个RDD为主
-    val subRDD_1 = dataRDD_1.subtract(dataRDD_2)
+    val subRDD_1: RDD[Int] = dataRDD_1.subtract(dataRDD_2)
     subRDD_1.collect().foreach(println)
     println("-------------------------------------------")
 
-    val subRDD_2 = dataRDD_2.subtract(dataRDD_1)
+    val subRDD_2: RDD[Int] = dataRDD_2.subtract(dataRDD_1)
     subRDD_2.collect().foreach(println)
   }
 }

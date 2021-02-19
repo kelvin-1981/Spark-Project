@@ -29,9 +29,15 @@ object SparkRDDCogroup {
    * @param sc
    */
   def transformCogroup(sc: SparkContext): Unit = {
+    // TODO: 输出结果
+    // (a,(CompactBuffer(1),CompactBuffer(),CompactBuffer(100, 1000)))
+    // (b,(CompactBuffer(2),CompactBuffer(5),CompactBuffer(500)))
+    // (c,(CompactBuffer(),CompactBuffer(6, 7),CompactBuffer(600, 700)))
+    // (d,(CompactBuffer(),CompactBuffer(4),CompactBuffer()))
     val dataRDD_1: RDD[(String, Int)] = sc.makeRDD(List(("a", 1), ("b", 2)))
-    val dataRDD_2: RDD[(String, Int)] = sc.makeRDD(List(("a", 4), ("b", 5), ("c", 6), ("c", 7)))
-    val congRDD = dataRDD_1.cogroup(dataRDD_2)
+    val dataRDD_2: RDD[(String, Int)] = sc.makeRDD(List(("d", 4), ("b", 5), ("c", 6), ("c", 7)))
+    val dataRDD_3: RDD[(String, Int)] = sc.makeRDD(List(("a", 100), ("b", 500), ("c", 600), ("c", 700),("a",1000)))
+    val congRDD: RDD[(String, (Iterable[Int], Iterable[Int], Iterable[Int]))] = dataRDD_1.cogroup(dataRDD_2, dataRDD_3)
     congRDD.collect().foreach(println)
   }
 }

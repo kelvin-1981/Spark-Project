@@ -84,8 +84,8 @@ object SparkRDDFlatMap {
     val flatRDD: RDD[Any]  = dataRDD.flatMap(data => {
       println("source: " + data)
       data match {
-        case list: List[_] => {println(list); list}
-        case value: Int => {println(List(value)); List(value)}
+        case list: List[_] => list
+        case value: Int => List(value)
       }
     })
 
@@ -106,9 +106,17 @@ object SparkRDDFlatMap {
 
     val dataRDD: RDD[List[Int]] = sc.makeRDD(List(List(1, 2), List(3, 4)))
 
+    // TODO: 输出结果
+    // 10
+    // 20
+    // 30
+    // 40
     val flatRDD: RDD[Int] = dataRDD.flatMap(_.map(_ * 10))
     flatRDD.collect.foreach(println)
 
+    // TODO: 输出结果
+    // List(10, 20)
+    // List(30, 40)
     println("---------------------------------------------")
     val mapRDD: RDD[List[Int]] = dataRDD.map(_.map(_ * 10))
     mapRDD.collect().foreach(println)

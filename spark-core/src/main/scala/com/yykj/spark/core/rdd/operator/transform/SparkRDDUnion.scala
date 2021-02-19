@@ -25,7 +25,7 @@ object SparkRDDUnion {
   }
 
   /**
-   * intersection:交集：对源RDD和参数RDD求交集后返回一个新的RDD
+   * union:并集:对源RDD和参数RDD求并集后返回一个新的RDD
    * @param sc
    */
   def transformUnion(sc: SparkContext): Unit = {

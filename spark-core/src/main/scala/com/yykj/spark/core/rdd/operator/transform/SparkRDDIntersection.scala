@@ -31,7 +31,7 @@ object SparkRDDIntersection {
   def transformIntersection(sc: SparkContext): Unit = {
     val dataRDD_1: RDD[Int] = sc.makeRDD(List(1, 2, 3, 4, 5, 6))
     val dataRDD_2: RDD[Int] = sc.makeRDD(List(5, 6, 7, 8, 9, 10))
-    val interRDD = dataRDD_1.intersection(dataRDD_2)
+    val interRDD: RDD[Int] = dataRDD_1.intersection(dataRDD_2)
     interRDD.collect().foreach(println)
   }
 }

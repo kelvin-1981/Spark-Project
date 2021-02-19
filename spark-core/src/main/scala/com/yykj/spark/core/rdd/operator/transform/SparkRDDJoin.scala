@@ -17,9 +17,9 @@ object SparkRDDJoin {
 
     // TODO: 2.逻辑计算
     // TODO: 2.1 Join:在类型为(K,V)和(K,W)的RDD上调用，返回一个相同key对应的所有元素连接在一起的(K,(V,W))的RDD
-    //transformJoin(sc)
+    transformJoin(sc)
     // TODO: 2.2 Join一对多
-    transformJoin02(sc)
+    //transformJoin02(sc)
 
     // TODO: 3.关闭环境
     sc.stop()
@@ -30,9 +30,12 @@ object SparkRDDJoin {
    * @param sc
    */
   def transformJoin(sc: SparkContext): Unit = {
+    // TODO: 计算结果
+    // (a,(1,4))
+    // (c,(3,6))
     val dataRDD_1: RDD[(String, Int)] = sc.makeRDD(Array(("a", 1), ("b", 2), ("c", 3)))
     val dataRDD_2: RDD[(String, Int)] = sc.makeRDD(Array(("a", 4), ("d", 10), ("c", 6)))
-    val joinRDD = dataRDD_1.join(dataRDD_2)
+    val joinRDD: RDD[(String, (Int, Int))] = dataRDD_1.join(dataRDD_2)
     joinRDD.collect().foreach(println)
   }
 

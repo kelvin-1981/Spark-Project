@@ -22,11 +22,11 @@ object SparkRDDGroupBy {
 
     // TODO: 2.执行操作
     // TODO: 2.1 groupBy标准操作：将数据根据指定的规则进行分组, 分区默认不变，但是数据会被打乱重新组合，我们将这样的操作称之为shuffle
-    //transformGroupBy(sc)
+    transformGroupBy(sc)
     // TODO: 2.2 groupBy根据首写字母进行分组
     //transformGroupByFirstWord(sc)
     // TODO: 2.3 groupBy分析日志(建议使用Reduce进行数据聚合)
-    transformGroupByLog(sc)
+    //transformGroupByLog(sc)
 
     // TODO: 3.关闭环境
     sc.stop()
@@ -54,6 +54,8 @@ object SparkRDDGroupBy {
 //    })
 
     // TODO: 2.简化写法
+    // (1,CompactBuffer(1, 3))
+    // (0,CompactBuffer(2, 4))
     val groupRDD: RDD[(Int, Iterable[Int])] = dataRDD.groupBy(_ % 2)
     groupRDD.foreach(println)
   }

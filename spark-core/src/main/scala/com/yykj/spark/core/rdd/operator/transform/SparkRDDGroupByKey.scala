@@ -29,7 +29,7 @@ object SparkRDDGroupByKey {
 
     // TODO: 2.逻辑计算
     // TODO: 2.1 groupByKey:将数据源的数据根据key对value进行分组
-    //transformGroupByKey(sc)
+    transformGroupByKey(sc)
 
     // TODO: 3.关闭环境
     sc.stop()
@@ -43,6 +43,9 @@ object SparkRDDGroupByKey {
     val dataRDD = sc.makeRDD(List(("a", 1), ("a", 2), ("a", 3), ("b", 4)))
     // TODO: 相同key的数据分在一个组中，形成一个对偶元组(String, Iterable[T])
     val groupRDD: RDD[(String, Iterable[Int])] = dataRDD.groupByKey()
+    // TODO: 计算结果
+    // (a,CompactBuffer(1, 2, 3))
+    // (b,CompactBuffer(4))
     groupRDD.collect().foreach(println)
   }
 }

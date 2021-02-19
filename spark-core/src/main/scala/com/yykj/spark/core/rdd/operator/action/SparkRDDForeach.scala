@@ -59,8 +59,9 @@ object SparkRDDForeach {
       println((userInfo.age + num))
     })
   }
+
+  class user extends Serializable {
+    var age: Int = 10
+  }
 }
 
-class user extends Serializable {
-  var age: Int = 10
-}

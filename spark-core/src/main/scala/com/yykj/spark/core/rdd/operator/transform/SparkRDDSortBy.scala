@@ -19,10 +19,10 @@ object SparkRDDSortBy {
 
     // TODO: 2.逻辑计算
     // TODO: 2.1 sortBY: 该操作用于排序数据。在排序之前，可以将数据通过f函数进行处理，之后按照f函数处理的结果进行排序，默认为升序排列。
-    //transformSortBy(sc)
+    transformSortBy(sc)
 
     // TODO: 2.2 sortBY: 元组形式排序
-    transformSortBy02(sc)
+    //transformSortBy02(sc)
 
     // TODO: 3.关闭环境
     sc.stop()

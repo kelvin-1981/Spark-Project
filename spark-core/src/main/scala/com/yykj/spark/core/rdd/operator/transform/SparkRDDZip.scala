@@ -35,7 +35,14 @@ object SparkRDDZip {
     // 要求2：每个分区中元素数量必须相等
     val dataRDD_1: RDD[Int] = sc.makeRDD(List(1, 2, 3, 4, 5, 6))
     val dataRDD_2: RDD[Int] = sc.makeRDD(List(5, 6, 7, 8, 9, 10))
-    val zipRDD = dataRDD_1.zip(dataRDD_2)
+    // TODO: 计算结果
+    // (1,5)
+    // (2,6)
+    // (3,7)
+    // (4,8)
+    // (5,9)
+    // (6,10)
+    val zipRDD: RDD[(Int, Int)] = dataRDD_1.zip(dataRDD_2)
     zipRDD.collect().foreach(println)
   }
 }
