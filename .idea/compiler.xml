@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spark-application" />
         <module name="spark-core" />
+        <module name="scala-base" />
         <module name="scala-test" />
       </profile>
     </annotationProcessing>

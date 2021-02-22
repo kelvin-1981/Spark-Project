@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>scala-test</artifactId>
+    <artifactId>scala-base</artifactId>
 
 
 </project>
