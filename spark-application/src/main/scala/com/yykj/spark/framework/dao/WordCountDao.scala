@@ -1,15 +1,18 @@
 package com.yykj.spark.framework.dao
 
+import com.yykj.spark.framework.common.TDao
+import com.yykj.spark.framework.util.EnvUtils
 import org.apache.spark.rdd.RDD
 
-/**
- * 持久层
- */
-class WordCountDao  {
+class WordCountDao extends TDao{
 
-  def readDataFile(path: String) = {
-    // 1:hello world 2:hello spark
-    val rdd_line: RDD[String] = sc.textFile(path)
-    rdd_line
+  override def readFile(path: String): RDD[String] = {
+    EnvUtils.get().textFile(path)
   }
+
+  override def readHdfs(path: String): Any = ???
+
+  override def readMySQL(server: String, port: String, user: String, pwd: String): Any = ???
+
+  override def readOracle(server: String, port: String, user: String, pwd: String): Any = ???
 }
