@@ -29,9 +29,10 @@ object SparkRDDUnion {
    * @param sc
    */
   def transformUnion(sc: SparkContext): Unit = {
+    // 1,2,3,4,5,6,5,6,7,8,9,10
     val dataRDD_1: RDD[Int] = sc.makeRDD(List(1, 2, 3, 4, 5, 6))
     val dataRDD_2: RDD[Int] = sc.makeRDD(List(5, 6, 7, 8, 9, 10))
-    val unionRDD = dataRDD_1.union(dataRDD_2)
-    unionRDD.collect().foreach(println)
+    val unionRDD: RDD[Int] = dataRDD_1.union(dataRDD_2)
+    println(unionRDD.collect().mkString(","))
   }
 }

@@ -28,7 +28,7 @@ object SparkRDDCollect {
    * @param sc
    */
   def actionCollect(sc: SparkContext): Unit = {
-    val dataRDD: RDD[Int] = sc.makeRDD(List(1, 2, 3, 4, 5))
+    val dataRDD: RDD[Int] = sc.makeRDD(List(1, 2, 3, 4, 5),2)
     val resArr: Array[Int] = dataRDD.collect()
     resArr.foreach(println)
   }

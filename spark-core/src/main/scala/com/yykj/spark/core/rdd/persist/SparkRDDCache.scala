@@ -10,6 +10,7 @@ object SparkRDDCache {
    * RDD持久化 : RDD中不存储数据。如一个RDD需要重复使用，需要从头再次执行获取数据（实现对象重用未实现数据重用），解决此问题需要RDD持久化
    * RDD通过Cache或者Persist方法将前面的计算结果缓存，默认情况下会把数据以缓存在JVM的堆内存中。但是并不是这两个方法被调用时立即缓存，
    * 而是触发后面的action算子时，该RDD将会被缓存在计算节点的内存中，并供后面重用。
+   * **与CheckPoint区别，Cache所属作业执行完毕后，清除缓存数据
    * @param args
    */
   def main(args: Array[String]): Unit = {

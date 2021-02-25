@@ -19,13 +19,13 @@ object SparkRDDMapPartitions {
 
     // TODO: 2.执行操作
     // TODO: 2.1 mapPartitions标准操作 简化写法
-    transformMapPartitions(sc)
+    //transformMapPartitions(sc)
 
     // TODO: 2.2 mapPartitions标准操作
     //transformMapPartitions02(sc)
 
     // TODO: 2.3 mapPartitions获取分区最大值
-    //transformMapPartitions03(sc)
+    transformMapPartitions03(sc)
 
     // TODO: 3.关闭环境
     sc.stop()
