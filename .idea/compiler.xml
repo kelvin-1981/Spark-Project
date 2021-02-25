@@ -9,6 +9,7 @@
         <module name="spark-application" />
         <module name="spark-core" />
         <module name="scala-base" />
+        <module name="spark-sql" />
         <module name="scala-test" />
       </profile>
     </annotationProcessing>

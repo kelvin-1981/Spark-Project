@@ -12,6 +12,7 @@
         <module>spark-core</module>
         <module>scala-base</module>
         <module>spark-application</module>
+        <module>spark-sql</module>
     </modules>
 
 
