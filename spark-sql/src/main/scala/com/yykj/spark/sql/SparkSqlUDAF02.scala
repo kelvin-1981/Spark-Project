@@ -21,7 +21,7 @@ object SparkSqlUDAF02 {
 
     // TODO: 2.业务逻辑
     // TODO: 2.1 Spark-SQL 自定义聚合函数,计算年龄平均值
-    SparkSqlUDAF01(spark)
+    SparkSqlUDAF(spark)
 
     // TODO: 3.关闭环境
     spark.stop()
@@ -31,12 +31,12 @@ object SparkSqlUDAF02 {
    * Spark-SQL 自定义聚合函数
    * @param spark
    */
-  def SparkSqlUDAF01(spark: SparkSession): Unit = {
+  def SparkSqlUDAF(spark: SparkSession): Unit = {
     val df: DataFrame = spark.read.json("spark-sql/datas/input/user.json")
     df.createOrReplaceTempView("user")
 
-    //spark.udf.register("ageAvg", functions.udaf(new MyAvgClass))
-    //spark.sql("select ageAvg(age) from user").show()
+    spark.udf.register("ageAvg", functions.udaf(new MyAvgClass))
+    spark.sql("select ageAvg(age) from user").show()
   }
 
   /**
