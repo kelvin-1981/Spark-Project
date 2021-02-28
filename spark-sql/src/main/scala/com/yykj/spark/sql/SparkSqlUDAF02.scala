@@ -1,9 +1,8 @@
 package com.yykj.spark.sql
 
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.expressions.{Aggregator, MutableAggregationBuffer, UserDefinedAggregateFunction}
-import org.apache.spark.sql.types.{DataType, LongType, StructField, StructType}
-import org.apache.spark.sql.{DataFrame, Encoder, Encoders, Row, SparkSession, functions}
+import org.apache.spark.sql.expressions.{Aggregator}
+import org.apache.spark.sql.{DataFrame, Encoder, Encoders, SparkSession, functions}
 
 
 object SparkSqlUDAF02 {
