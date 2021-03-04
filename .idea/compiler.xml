@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spark-application" />
         <module name="spark-core" />
+        <module name="spark-streaming" />
         <module name="scala-base" />
         <module name="spark-sql" />
         <module name="scala-test" />
