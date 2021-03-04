@@ -1,12 +1,10 @@
-package com.yykj.spark.streaming
+package com.yykj.spark.streaming.receiver
 
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord}
 import org.apache.spark.SparkConf
-import org.apache.spark.streaming.dstream.{DStream, InputDStream}
+import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-
-import scala.util.Random
 
 object SparkStreamingKafkaReceiver {
 
@@ -15,11 +13,12 @@ object SparkStreamingKafkaReceiver {
    * 1) 【全部节点】启动zookeeper: /opt/module/zookeeper-3.4.14/bin/zkServer.sh start
    * 2) 【全部节点】启动kafka: /opt/module/kafka-2.1.1/bin/kafka-server-start.sh /opt/module/kafka-2.1.1/config/server.properties &
    * 3) kafka集群创建topic:
-   *    A./opt/module/kafka-2.1.1/bin/kafka-topics.sh --list --zookeeper node21:2181
-   *    B./opt/module/kafka-2.1.1/bin/kafka-topics.sh --create --zookeeper node21:2181 --partitions 3 --replication-factor 2 --topic yykj
+   * A./opt/module/kafka-2.1.1/bin/kafka-topics.sh --list --zookeeper node21:2181
+   * B./opt/module/kafka-2.1.1/bin/kafka-topics.sh --create --zookeeper node21:2181 --partitions 3 --replication-factor 2 --topic yykj
    * 4) 启动spark-streaming程序
    * 5) producer发送数据至topic yykj: /opt/module/kafka-2.1.1/bin/kafka-console-producer.sh --broker-list node21:9092 --topic yykj
    * 6) 输出计算结果完成
+   *
    * @param args
    */
   def main(args: Array[String]): Unit = {
@@ -51,11 +50,11 @@ object SparkStreamingKafkaReceiver {
     // TODO: 2.3 获取kafka消息的数据 & 计算
     kafkaStream.map(_.value()).print()
 
-//    val mapStream: DStream[(String, Int)] = kafkaStream.map {
-//      case record => (record.value(), 1)
-//    }
-//    val redStream: DStream[(String, Int)] = mapStream.reduceByKey(_ + _)
-//    redStream.print()
+    //    val mapStream: DStream[(String, Int)] = kafkaStream.map {
+    //      case record => (record.value(), 1)
+    //    }
+    //    val redStream: DStream[(String, Int)] = mapStream.reduceByKey(_ + _)
+    //    redStream.print()
 
     // TODO: 3.环境
     ssc.start()

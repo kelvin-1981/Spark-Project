@@ -1,8 +1,8 @@
-package com.yykj.spark.streaming
+package com.yykj.spark.streaming.receiver
 
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
-import org.apache.spark.streaming.dstream.{DStream, InputDStream, ReceiverInputDStream}
+import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 import scala.collection.mutable
@@ -11,6 +11,7 @@ object SparkStreamingReceiverQueue {
 
   /**
    * 测试过程中，可以通过使用 ssc.queueStream(queueOfRDDs)来创建 DStream，每一个推送到这个队列中的 RDD，都会作为一个 DStream处理。
+   *
    * @param args
    */
   def main(args: Array[String]): Unit = {
@@ -31,11 +32,11 @@ object SparkStreamingReceiverQueue {
     // TODO: 3.环境
     // TODO: 注意：由于spark-streaming 采集器是长期执行的任务 故不能关闭
     // TODO: 注意：如果main方法执行完毕，应用程序也会自动结束。所以不能让main执行完毕
-    // TODO: 3.1 启动采集器 
+    // TODO: 3.1 启动采集器
     ssc.start()
 
     // TODO: 4.创建模拟数据
-    for (i <- -1 to 5){
+    for (i <- -1 to 5) {
       rddQue += ssc.sparkContext.makeRDD(1 to 300, 10)
       Thread.sleep(2000)
     }

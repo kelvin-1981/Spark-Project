@@ -1,13 +1,11 @@
-package com.yykj.spark.streaming
+package com.yykj.spark.streaming.receiver
 
 import org.apache.spark.SparkConf
-import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.dstream.{DStream, InputDStream, ReceiverInputDStream}
+import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.receiver.Receiver
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-import scala.collection.mutable
 import scala.util.Random
 
 object SparkStreamingSelfReceiver {
@@ -15,6 +13,7 @@ object SparkStreamingSelfReceiver {
   /**
    * 自定义数据采集器
    * 需要继承Receiver，并实现onStart、onStop方法来自定义数据源采集。
+   *
    * @param args
    */
   def main(args: Array[String]): Unit = {
@@ -39,7 +38,7 @@ object SparkStreamingSelfReceiver {
    * 1.继承Receiver A.设置泛型：接入的数据类型 B.设置存储级别：StorageLevel
    * 2.重写方法
    */
-  class CustomerReceiver extends Receiver[String](StorageLevel.MEMORY_ONLY){
+  class CustomerReceiver extends Receiver[String](StorageLevel.MEMORY_ONLY) {
 
     private var flag: Boolean = true
 
@@ -50,7 +49,7 @@ object SparkStreamingSelfReceiver {
       // TODO: 1.生成采集器的线程并启动 一直处于采集状态
       new Thread(new Runnable {
         override def run(): Unit = {
-          while (flag){
+          while (flag) {
             //生成数据
             val value = "data is : " + new Random().nextInt(10).toString
             //进行数据封装
@@ -68,4 +67,5 @@ object SparkStreamingSelfReceiver {
       flag = false
     }
   }
+
 }

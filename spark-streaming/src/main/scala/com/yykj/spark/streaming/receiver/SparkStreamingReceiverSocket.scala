@@ -1,4 +1,4 @@
-package com.yykj.spark.streaming
+package com.yykj.spark.streaming.receiver
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}
@@ -31,10 +31,11 @@ object SparkStreamingReceiverSocket {
    * 1. 添加依赖 pom.xml
    * 2. 编写spark-streaming 代码
    * 3. 启动程序并通过 netcat发送数据(*先启动程序后启动netcat)
-   *    0) netcat环境准备: https://blog.csdn.net/qq_37585545/article/details/82250984
-   *    1) 启动spark-streaming 程序
-   *    2) 启动windows-cmd: nc -lp 9999
-   *    3) hello spark
+   * 0) netcat环境准备: https://blog.csdn.net/qq_37585545/article/details/82250984
+   * 1) 启动spark-streaming 程序
+   * 2) 启动windows-cmd: nc -lp 9999
+   * 3) hello spark
+   *
    * @param args
    */
   def main(args: Array[String]): Unit = {
@@ -57,7 +58,7 @@ object SparkStreamingReceiverSocket {
     // TODO: 3.环境
     // TODO: 注意：由于spark-streaming 采集器是长期执行的任务 故不能关闭
     // TODO: 注意：如果main方法执行完毕，应用程序也会自动结束。所以不能让main执行完毕
-    // TODO: 3.1 启动采集器 
+    // TODO: 3.1 启动采集器
     ssc.start()
     // TODO: 3.2 等待采集器的关闭
     ssc.awaitTermination()
