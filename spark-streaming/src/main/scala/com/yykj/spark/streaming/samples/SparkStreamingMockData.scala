@@ -2,8 +2,6 @@ package com.yykj.spark.streaming.samples
 
 import java.util.{Properties, Random}
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
-import org.apache.spark.SparkConf
-import org.apache.spark.streaming.{Seconds, StreamingContext}
 import scala.collection.mutable.ListBuffer
 
 object SparkStreamingMockData {
@@ -36,7 +34,7 @@ object SparkStreamingMockData {
         println(data)
       })
 
-      Thread.sleep(5000)
+      Thread.sleep(3000)
     }
   }
 
@@ -51,7 +49,7 @@ object SparkStreamingMockData {
     val areaList: ListBuffer[String] = ListBuffer[String]("华北", "华东", "东北", "西南", "东南")
     val cityList: ListBuffer[String] = ListBuffer[String]("北京", "上海", "广州", "深圳", "武汉","三亚")
 
-    for(i <- 1 to 30){
+    for(i <- 1 to new Random().nextInt(50)){
       val area: String = areaList(new Random().nextInt(5))
       val city: String = cityList(new Random().nextInt(6))
       val userid: String = "U" + (new Random().nextInt(6) + 1)

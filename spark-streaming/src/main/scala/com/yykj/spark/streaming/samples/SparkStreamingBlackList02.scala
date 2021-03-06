@@ -1,37 +1,23 @@
 package com.yykj.spark.streaming.samples
 
-import java.sql.{PreparedStatement, ResultSet}
+import java.sql.ResultSet
 import java.text.SimpleDateFormat
 import java.util.Date
 
 import com.yykj.spark.streaming.samples.utils.JDBCUtil
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord}
+import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.dstream.{DStream, InputDStream}
-import org.apache.spark.{SPARK_BRANCH, SparkConf}
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 import scala.collection.mutable.ListBuffer
 
 /**
- * 实现实时的动态黑名单机制：将每天对某个广告点击超过 100 次的用户拉黑。注：黑名单保存到MySQL中。
- * 1.需求过程：mock data -> kafka-> spark-streaming -> analysis -> mysql
- * 2.数据定义
- *   1) 格式 ：timestamp area city userid adid
- *   2) 含义： 时间戳 区域 城市 用户 广告
- * 3.执行步骤
- *   1) 【全部节点】启动zookeeper: /opt/module/zookeeper-3.4.14/bin/zkServer.sh start
- *   2) 【全部节点】启动kafka: /opt/module/kafka-2.1.1/bin/kafka-server-start.sh /opt/module/kafka-2.1.1/config/server.properties &
- *   3) kafka集群创建topic:
- *   A./opt/module/kafka-2.1.1/bin/kafka-topics.sh --list --zookeeper node21:2181
- *   B./opt/module/kafka-2.1.1/bin/kafka-topics.sh --create --zookeeper node21:2181 --partitions 3 --replication-factor 2 --topic yykj
- *   4) 创建MySQL数据表 black_list、user_ad_count
- *   4) 启动spark-streaming SparkStreamingBlackList程序
- *   5) 启动spark-streaming SparkStreamingMockData程序
- *   6) 计算完成
+ * 优化SparkStreamingBlackList代码: MySQL数据库操作部分
  */
-object SparkStreamingBlackList {
+object SparkStreamingBlackList02 {
 
   /**
    *
@@ -141,17 +127,14 @@ object SparkStreamingBlackList {
 
   /**
    * 根据主键状态插入、更新黑名单数据
+   *
    * @param user
    */
   def insertOrElseBlackList(user: String): Unit = {
     // 周期性获取黑名单信息
     val conn = JDBCUtil.getConnection
     //当出现重复主键时 只做更新数据
-    val stat = conn.prepareStatement("insert into black_list values (?) ON DUPLICATE KEY UPDATE userid=?")
-    stat.setString(1, user)
-    stat.setString(2, user)
-    stat.executeUpdate()
-    stat.close()
+    JDBCUtil.executeUpdate(conn, "insert into black_list values (?) ON DUPLICATE KEY UPDATE userid=?",Array(user,user))
     conn.close()
   }
 
@@ -162,15 +145,11 @@ object SparkStreamingBlackList {
   def insertOrElseAction(day: String, user: String, ad: String, sum: Int): Unit = {
     // 周期性获取黑名单信息
     val conn = JDBCUtil.getConnection
-
-    val stat = conn.prepareStatement("insert into user_ad_count values (?,?,?,?) ON DUPLICATE KEY UPDATE count = count + ?")
-    stat.setString(1, day)
-    stat.setString(2, user)
-    stat.setString(3, ad)
-    stat.setInt(4, sum)
-    stat.setInt(5, sum)
-    stat.executeUpdate()
-    stat.close()
+    JDBCUtil.executeUpdate(
+      conn,
+      "insert into user_ad_count values (?,?,?,?) ON DUPLICATE KEY UPDATE count = count + ?",
+      Array(day, user, ad, sum, sum)
+    )
     conn.close()
   }
 
